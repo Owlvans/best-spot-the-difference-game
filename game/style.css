@@ -1,0 +1,208 @@
+/* Twin Vista — page styling. Dark gallery wall, warm brass accents; the two
+   picture panels on the canvas carry the colour. System fonts only: the game
+   must work offline from its own files. */
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #14161d radial-gradient(1200px 600px at 50% -10%, #232838 0%, #14161d 60%);
+  color: #f2ead8;
+  font-family: "Avenir Next", "Segoe UI", Verdana, system-ui, sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  width: 1280px;
+  margin: 0 auto;
+  padding: 14px 14px 18px;
+}
+
+/* --- top bar ------------------------------------------------------------ */
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 2px 4px 10px;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 3px;
+  font-weight: 800;
+  color: #ffd98a;
+  text-shadow: 0 2px 0 #7a4d12;
+}
+
+.brand p {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #9fb4c8;
+}
+
+.scenes { display: flex; gap: 8px; }
+
+.tab {
+  background: #1e2432;
+  color: #cfd8e6;
+  border: 1px solid #39445c;
+  border-radius: 10px;
+  padding: 7px 12px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: left;
+  line-height: 1.25;
+}
+
+.tab span {
+  display: block;
+  font-size: 11px;
+  font-weight: 400;
+  color: #8fa1b8;
+}
+
+.tab:hover { border-color: #ffd98a; }
+.tab.active { background: #2c2417; border-color: #ffd98a; color: #ffd98a; }
+.tab.active span { color: #d8b96a; }
+.tab.done { border-color: #58b368; }
+
+/* --- stat bar ----------------------------------------------------------- */
+
+.statbar {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: #1b202e;
+  border: 1px solid #333d55;
+  border-radius: 12px;
+  padding: 9px 16px;
+  margin-bottom: 10px;
+}
+
+.stat label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #8fa1b8;
+  margin-bottom: 2px;
+}
+
+.stat strong { font-size: 20px; font-weight: 800; color: #fff; }
+.stat.counter strong { color: #ffd98a; }
+
+.togo {
+  margin-left: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #7ee2a0;
+}
+
+.stat.timer { flex: 1; min-width: 220px; }
+.stat.timer .bar {
+  height: 10px;
+  background: #0d0f14;
+  border-radius: 5px;
+  overflow: hidden;
+  margin: 3px 0 2px;
+}
+#timebar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #58b368, #a8d95e);
+  border-radius: 5px;
+  transition: width 0.25s linear, background 0.25s;
+}
+#timebar.low { background: linear-gradient(90deg, #d94f30, #f08c3c); }
+.stat.timer strong { font-size: 15px; }
+
+.controls { display: flex; gap: 8px; margin-left: auto; }
+
+.btn {
+  background: #262e42;
+  color: #e8eef7;
+  border: 1px solid #46536e;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn:hover { border-color: #ffd98a; color: #ffd98a; }
+.btn:disabled { opacity: 0.45; cursor: default; }
+.btn:disabled:hover { border-color: #46536e; color: #e8eef7; }
+.btn.hint { background: #3a2f16; border-color: #a8832f; color: #ffd98a; }
+.btn.primary { background: #b97f22; border-color: #ffd98a; color: #fff8ea; }
+
+/* --- stage -------------------------------------------------------------- */
+
+.stage {
+  position: relative;
+  width: 1252px;
+  margin: 0 auto;
+}
+
+canvas#game {
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55), 0 0 0 1px #39445c;
+  cursor: crosshair;
+  background: #0d0f14;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(10, 12, 18, 0.55);
+  border-radius: 10px;
+}
+.overlay[hidden] { display: none; }
+
+.overlay .card {
+  background: #1d2331;
+  border: 1px solid #ffd98a;
+  border-radius: 16px;
+  padding: 26px 38px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  max-width: 480px;
+}
+.overlay .card h2 { margin: 0 0 4px; font-size: 30px; color: #ffd98a; }
+.overlay .stars { font-size: 30px; color: #ffd23c; letter-spacing: 6px; margin: 2px 0 8px; }
+.overlay .stars .dim { color: #4a5468; }
+.overlay .card p { margin: 0 0 16px; color: #cfd8e6; font-size: 15px; line-height: 1.5; }
+.cardButtons { display: flex; gap: 10px; justify-content: center; }
+
+/* --- found bar ---------------------------------------------------------- */
+
+.foundbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 4px 0;
+  min-height: 34px;
+}
+.foundLabel { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #8fa1b8; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; }
+.chips .none { color: #67788f; font-size: 13px; }
+.chip {
+  background: #173324;
+  border: 1px solid #58b368;
+  color: #a9e8bd;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.tip { color: #67788f; font-size: 12px; white-space: nowrap; }
